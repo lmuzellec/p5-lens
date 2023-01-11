@@ -3,9 +3,9 @@
  * @class Draggable
  */
 class Draggable {
-  constructor() {
-    this.x = 100;
-    this.y = 100;
+  constructor(x = 150, y = 150) {
+    this.x = x;
+    this.y = y;
     this.offsetX = 0;
     this.offsetY = 0;
 
