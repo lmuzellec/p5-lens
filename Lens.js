@@ -1,8 +1,8 @@
 class Lens extends Draggable {
-  constructor(size = 50, edgeSize = 10) {
+  constructor(x = 150, y = 150, size = 100, edgeSize = 10) {
     super();
-    this.x = 100;
-    this.y = 100;
+    this.x = x;
+    this.y = y;
 
     // radius
     this.size = size;
@@ -37,7 +37,7 @@ class Lens extends Draggable {
     } else if (this.hovering) {
       stroke(255, 255, 0);
     } else {
-      stroke(255, 255, 255);
+      stroke(200, 200, 200);
     }
     strokeWeight(this.edgeSize);
     noFill();
