@@ -3,41 +3,55 @@
  */
 let wireframeLens;
 /**
+ * @type {ZoomLens}
+ */
+let zoomLens;
+/**
  * @type {Draggable[]}
  */
 let draggables = [];
 
+let SIZE = { width: 500, height: 500 };
+
 let pgWireframe;
 let pgSolid;
 let pgWireframeOutput;
+let pgOutput;
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(SIZE.width, SIZE.height);
 
-  pgWireframe = createGraphics(windowWidth, windowHeight, WEBGL);
+  pgWireframe = createGraphics(SIZE.width, SIZE.height, WEBGL);
   pgWireframe.setAttributes({ alpha: true });
   pgWireframe.perspective();
 
-  pgSolid = createGraphics(windowWidth, windowHeight, WEBGL);
+  pgSolid = createGraphics(SIZE.width, SIZE.height, WEBGL);
   pgSolid.setAttributes({ alpha: true });
 
-  pgWireframeOutput = createGraphics(windowWidth, windowHeight);
+  pgWireframeOutput = createGraphics(SIZE.width, SIZE.height);
+
+  pgOutput = createGraphics(SIZE.width, SIZE.height);
 
   wireframeLens = new WireframeLens(pgSolid, pgWireframe, pgWireframeOutput);
   draggables.push(wireframeLens);
+
+  zoomLens = new ZoomLens(pgWireframeOutput, pgOutput);
+  draggables.push(zoomLens);
 }
 
 function draw() {
   // update
   wireframeLens.update();
+  zoomLens.update();
 
   // draw
   background(0);
   drawScene();
 
-  image(pgWireframeOutput, 0, 0);
-
   wireframeLens.draw();
+  zoomLens.draw();
+
+  image(pgOutput, 0, 0);
 }
 
 function drawScene() {

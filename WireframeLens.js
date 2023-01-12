@@ -1,12 +1,11 @@
 class WireframeLens extends Lens {
-  constructor(inputSolid, inputWireframe, outputGraphics) {
-    super(150, 150);
+  constructor(inputSolid, inputWireframe, outputGraphic) {
+    super(outputGraphic, 150, 150);
 
     this.inputSolid = inputSolid;
     this.inputWireframe = inputWireframe;
-    this.imageWireframe = createImage(windowWidth, windowHeight);
-    this.imageSolid = createImage(windowWidth, windowHeight);
-    this.outputGraphics = outputGraphics;
+    this.imageWireframe = createImage(SIZE.width, SIZE.height);
+    this.imageSolid = createImage(SIZE.width, SIZE.height);
   }
 
   update() {
@@ -16,6 +15,8 @@ class WireframeLens extends Lens {
   }
 
   draw() {
+    this.outputGraphic.image(this.imageWireframe, 0, 0);
+    this.outputGraphic.image(this.imageSolid, 0, 0);
     super.draw();
   }
 
@@ -26,8 +27,5 @@ class WireframeLens extends Lens {
       true
     );
     this.imageSolid = this.pgMask(this.inputSolid, this.outerMask, true);
-
-    this.outputGraphics.image(this.imageWireframe, 0, 0);
-    this.outputGraphics.image(this.imageSolid, 0, 0);
   }
 }

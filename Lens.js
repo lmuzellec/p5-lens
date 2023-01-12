@@ -1,11 +1,12 @@
 class Lens extends Draggable {
-  constructor(x = 150, y = 150, size = 100, edgeSize = 10) {
+  constructor(outputGraphic, x = 150, y = 150, size = 70, edgeSize = 10) {
     super(x, y);
+    this.outputGraphic = outputGraphic;
     this.x = x;
     this.y = y;
 
-    this.innerMask = createGraphics(windowWidth, windowHeight);
-    this.outerMask = createGraphics(windowWidth, windowHeight);
+    this.innerMask = createGraphics(SIZE.width, SIZE.height);
+    this.outerMask = createGraphics(SIZE.width, SIZE.height);
 
     // radius
     this.size = size;
@@ -35,19 +36,19 @@ class Lens extends Draggable {
   }
 
   draw() {
-    push();
+    this.outputGraphic.push();
     if (this.dragging) {
-      stroke(0, 255, 0);
+      this.outputGraphic.stroke(0, 255, 0);
     } else if (this.hovering) {
-      stroke(255, 255, 0);
+      this.outputGraphic.stroke(255, 255, 0);
     } else {
-      stroke(200, 200, 200);
+      this.outputGraphic.stroke(200, 200, 200);
     }
-    strokeWeight(this.edgeSize);
-    noFill();
+    this.outputGraphic.strokeWeight(this.edgeSize);
+    this.outputGraphic.noFill();
     // diameter
-    circle(this.x, this.y, this.size * 2 + this.edgeSize);
-    pop();
+    this.outputGraphic.circle(this.x, this.y, this.size * 2 + this.edgeSize);
+    this.outputGraphic.pop();
   }
 
   updateMask() {
