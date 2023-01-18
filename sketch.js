@@ -71,6 +71,7 @@ function drawScene() {
   pgWireframe.rotateY(frameCount * 0.01);
   pgWireframe.rotateX(frameCount * 0.005);
   pgWireframe.box(100);
+  pgWireframe.cone(20, 20);
   pgWireframe.pop();
 
   pgSolid.push();
