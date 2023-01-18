@@ -18,11 +18,9 @@ class Lens extends Draggable {
    */
   isOver() {
     // Is mouse over lens
-    let outside =
-      sqrt((mouseX - this.x) ** 2 + (mouseY - this.y) ** 2) > this.size;
+    let outside = distance({ x: mouseX, y: mouseY }, this) > this.size;
     let inside =
-      sqrt((mouseX - this.x) ** 2 + (mouseY - this.y) ** 2) <
-      this.size + this.edgeSize;
+      distance({ x: mouseX, y: mouseY }, this) < this.size + this.edgeSize;
     if (outside && inside) {
       return true;
     } else {

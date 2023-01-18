@@ -1,6 +1,6 @@
-class WireframeLens extends Lens {
+class WireframeLens extends LensWithHandle {
   constructor(inputSolid, inputWireframe, outputGraphic) {
-    super(outputGraphic, 150, 150);
+    super(outputGraphic, 150, 150, undefined, undefined, PI / 2);
 
     this.inputSolid = inputSolid;
     this.inputWireframe = inputWireframe;

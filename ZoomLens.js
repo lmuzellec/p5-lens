@@ -1,4 +1,4 @@
-class ZoomLens extends Lens {
+class ZoomLens extends LensWithHandle {
   constructor(inputGraphic, outputGraphic) {
     super(outputGraphic, 150, 400);
     this.zoom = 1.4;
