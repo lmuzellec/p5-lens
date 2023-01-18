@@ -52,6 +52,14 @@ function draw() {
   zoomLens.draw();
 
   image(pgOutput, 0, 0);
+
+  if (draggables.reduce((a, b) => a || b.dragging, false)) {
+    cursor("grabbing");
+  } else if (draggables.reduce((a, b) => a || b.hovering, false)) {
+    cursor("grab");
+  } else {
+    cursor("default");
+  }
 }
 
 function drawScene() {
