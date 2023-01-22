@@ -95,3 +95,8 @@ function mouseReleased() {
     draggable.onReleased();
   }
 }
+
+function mouseWheel(event) {
+  zoomLens.updateZoom(event.delta);
+  return false;
+}
